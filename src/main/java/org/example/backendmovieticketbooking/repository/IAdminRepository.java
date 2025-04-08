@@ -1,4 +1,4 @@
 package org.example.backendmovieticketbooking.repository;
 
-public interface IAdmimRepository {
+public interface IAdminRepository {
 }
