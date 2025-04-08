@@ -31,17 +31,16 @@ public class MovieService implements IMovieService {
     }
 
     @Override
-    public Movie updateMovie(Integer id, Movie movie) {
-//        Movie existingMovie = getMovieById(id);
-//        existingMovie.setTitle(movie.getTitle());
-//        existingMovie.setGenre(movie.getGenre());
-//        existingMovie.setDuration(movie.getDuration());
-//        return movieRepository.save(existingMovie);
-        return null;
+    public Movie updateMovie(Movie movie) {
+        return movieRepository.save(movie);
     }
 
     @Override
-    public void deleteMovie(Integer id) {
-        movieRepository.deleteById(id);
+    public boolean deleteMovie(Integer id) {
+        if (movieRepository.existsById(id)) {
+            movieRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
