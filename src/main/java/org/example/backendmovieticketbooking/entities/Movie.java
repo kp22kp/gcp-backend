@@ -12,13 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class Movie {
-
-
     @Id
     private int id;
     private String name;
     private int yearOfRelease;
     private String genre;
     private String language;
-
 }
