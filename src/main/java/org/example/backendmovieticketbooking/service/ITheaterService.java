@@ -1,7 +1,6 @@
 package org.example.backendmovieticketbooking.service;
 
 import org.example.backendmovieticketbooking.entities.Theater;
-
 import java.util.List;
 
 public interface ITheaterService {

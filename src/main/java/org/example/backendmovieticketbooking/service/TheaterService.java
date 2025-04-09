@@ -4,8 +4,8 @@ import org.example.backendmovieticketbooking.entities.Theater;
 import org.example.backendmovieticketbooking.repository.ITheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
 @Service
 public class TheaterService implements ITheaterService {
     @Autowired
