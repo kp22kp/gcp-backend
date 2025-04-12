@@ -59,6 +59,9 @@ public class UserController {
         String htmlContent = "<html>"
                 + "<body style=\"font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px;\">"
                 + "<div style=\"max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\">"
+                + "<div style=\"text-align: center; margin-bottom: 20px;\">"
+                + "<img src=\"https://pluspng.com/img-png/ford-logo-png-ford-logo-png-file-event-projection-1464x550.png\" style=\"max-width: 200px; height: auto;\" />"
+                + "</div>"
                 + "<h1 style=\"color: #333;\">Booking Confirmation</h1>"
                 + "<p style=\"color: #555;\">Dear " + user.getUserName() + ",</p>"
                 + "<p style=\"color: #555;\">Thank you for booking with us! Here are your booking details:</p>"
@@ -76,6 +79,7 @@ public class UserController {
                 + "</div>"
                 + "</body>"
                 + "</html>";
+
 
         emailService.sendConfirmationEmail(email, subject, htmlContent);
 
