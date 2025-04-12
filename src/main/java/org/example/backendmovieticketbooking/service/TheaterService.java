@@ -10,6 +10,8 @@ import java.util.List;
 public class TheaterService implements ITheaterService {
     @Autowired
     private ITheaterRepository theaterRepository;
+    @Autowired
+    private ITheaterService theaterService;
 
     @Override
     public Theater addTheater(Theater theater) {
@@ -44,5 +46,33 @@ public class TheaterService implements ITheaterService {
     public List<Theater> findAll() {
         theaterRepository.findAll();
         return (List<Theater>) theaterRepository.findAll();
+    }
+
+    @Override
+    public int getSeatsAvailable(String theaterSelected) {
+        Theater theater = getTheaterName(theaterSelected);
+        if (theater != null) {
+            return theater.getSeatsAvailable();
+        }
+        return 0;
+    }
+
+    @Override
+    public void setSeatsAvailable(String theaterSelected, int seatsAvailable) {
+        Theater theater = getTheaterName(theaterSelected);
+        if (theater != null) {
+            theater.setSeatsAvailable(seatsAvailable);
+            theaterRepository.save(theater);
+        }
+    }
+
+    public Theater getTheaterName(String theaterSelected) {
+        List<Theater> theaters = (List<Theater>) theaterRepository.findAll();
+        for (Theater theater : theaters) {
+            if (theater.getTheaterName().equals(theaterSelected)) {
+                return theater;
+            }
+        }
+        return null;
     }
 }

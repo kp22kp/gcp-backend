@@ -13,12 +13,12 @@ public class TheaterController {
     @Autowired
     private ITheaterService theaterService;
 
-    @PostMapping("/")
-    public Theater addStudent(@RequestBody Theater theater) {
+    @PostMapping("/add")
+    public Theater addTheater(@RequestBody Theater theater) {
         return theaterService.addTheater(theater);
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     public Theater updateTheater(@RequestBody Theater theater) {
         return theaterService.updateTheater(theater);
     }
@@ -36,7 +36,7 @@ public class TheaterController {
         return theaterService.getTheater(theaterId);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Theater> getAllTheater() {
         return theaterService.findAll();
     }

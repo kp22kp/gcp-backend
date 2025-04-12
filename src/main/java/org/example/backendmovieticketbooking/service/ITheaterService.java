@@ -9,4 +9,6 @@ public interface ITheaterService {
     public Boolean deleteTheater(int theaterId);
     public Theater getTheater(int theaterId);
     public List<Theater> findAll();
+    int getSeatsAvailable(String theaterSelected);
+    void setSeatsAvailable(String theaterSelected, int seatsAvailable);
 }
