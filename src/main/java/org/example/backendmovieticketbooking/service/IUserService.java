@@ -1,10 +1,10 @@
 package org.example.backendmovieticketbooking.service;
 
-import org.example.backendmovieticketbooking.entities.User;
+import org.example.backendmovieticketbooking.entities.Users;
 
 public interface IUserService {
-    User addUser(User user);
-    User getUserById(int id);
-    User updateUser(User user);
+    Users addUser(Users user);
+    Users getUserById(int id);
+    Users updateUser(Users user);
     boolean deleteUserById(int id);
 }

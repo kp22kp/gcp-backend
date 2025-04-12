@@ -1,11 +1,13 @@
 package org.example.backendmovieticketbooking.controller;
 
-import org.example.backendmovieticketbooking.entities.User;
-import org.example.backendmovieticketbooking.service.MovieService;
+
+import org.example.backendmovieticketbooking.entities.Users;
 import org.example.backendmovieticketbooking.service.TheaterService;
 import org.example.backendmovieticketbooking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/user") // Correctly define the base path
@@ -15,33 +17,38 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private MovieService movieService;
-
-    @Autowired
     private TheaterService theaterService;
 
+
+
     @PostMapping("")
-    public User addUser(@RequestBody User user) { // Use @RequestBody to map JSON to User
+    public Users addUser(@RequestBody Users user) { // Use @RequestBody to map JSON to User
         System.out.println("addUser called");
         int seatsNeeded = user.getNoOfSeatsBooked();
-        int availableSeats = theaterService.getSeatsAvailable(user.getTheaterSelected());
+        int availableSeats = theaterService.getSeatsAvailable(user.getTheaterSelected(), user.getSelectedDate(), user.getSelectedTime());
+        int totalSeats = theaterService.getTotalSeats(user.getTheaterSelected());
         if (seatsNeeded > availableSeats) {
-            throw new RuntimeException("Not enough seats available");
+            throw new RuntimeException("enough seats Not available");
         }
-        theaterService.setSeatsAvailable(user.getTheaterSelected(), seatsNeeded);
-        String seats = seatAllocation(seatsNeeded, availableSeats);
+        if (seatsNeeded > 10) {
+            throw new RuntimeException("Can only book 10 seats at a time");
+        }
+        int seatsBooked = totalSeats - availableSeats;
+        theaterService.setSeatsAvailable(user.getTheaterSelected(),availableSeats, seatsNeeded);
+        theaterService.setSeatsAvailable(user.getTheaterSelected(),availableSeats, seatsNeeded, user.getSelectedDate(), user.getSelectedTime());
+        String seats = seatAllocation(seatsNeeded, availableSeats, seatsBooked);
         user.setSeatsAllocated(seats);
         userService.addUser(user);
         return user;
     }
 
-    public String seatAllocation(int numberOfTickets, int availableTickets) {
+    public String seatAllocation(int numberOfTickets, int availableTickets, int seatsBooked) {
+        int seatNumber = seatsBooked+1;
         if (numberOfTickets > availableTickets) {
             return "Not enough tickets available";
         }
 
         StringBuilder seatAllocation = new StringBuilder();
-        int seatNumber = 1;
         int seatsPerRow = 10;
 
         for (int i = 0; i < numberOfTickets; i++) {
@@ -51,7 +58,7 @@ public class UserController {
             seatNumber++;
         }
 
-        if (seatAllocation.length() > 0) {
+        if (!seatAllocation.isEmpty()) {
             seatAllocation.setLength(seatAllocation.length() - 2);
         }
 
@@ -66,4 +73,10 @@ public class UserController {
         }
         return rowName.toString();
     }
+
+    @GetMapping("")
+    public List<Users> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
 }

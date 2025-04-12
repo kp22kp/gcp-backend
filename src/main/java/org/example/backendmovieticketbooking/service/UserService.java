@@ -1,10 +1,11 @@
 package org.example.backendmovieticketbooking.service;
 
-import org.example.backendmovieticketbooking.entities.User;
+import org.example.backendmovieticketbooking.entities.Users;
 import org.example.backendmovieticketbooking.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService implements IUserService {
@@ -12,17 +13,17 @@ public class UserService implements IUserService {
     private IUserRepository userRepository;
 
     @Override
-    public User addUser(User user) {
+    public Users addUser(Users user) {
         return userRepository.save(user);
     }
 
     @Override
-    public User getUserById(int id) {
+    public Users getUserById(int id) {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
     @Override
-    public User updateUser(User user) {
+    public Users updateUser(Users user) {
         return userRepository.save(user);
     }
 
@@ -32,5 +33,8 @@ public class UserService implements IUserService {
             userRepository.delete(user);
             return true;
         }).orElse(false);
+    }
+    public List<Users> getAllUsers() {
+        return (List<Users>) userRepository.findAll();
     }
 }

@@ -4,11 +4,13 @@ import org.example.backendmovieticketbooking.entities.Theater;
 import java.util.List;
 
 public interface ITheaterService {
-    public Theater addTheater(Theater theater);
-    public Theater updateTheater(Theater theater);
-    public Boolean deleteTheater(int theaterId);
-    public Theater getTheater(int theaterId);
-    public List<Theater> findAll();
-    int getSeatsAvailable(String theaterSelected);
-    void setSeatsAvailable(String theaterSelected, int seatsAvailable);
+    Theater addTheater(Theater theater);
+    Theater updateTheater(Theater theater);
+    Boolean deleteTheater(int theaterId);
+    Theater getTheater(int theaterId);
+    List<Theater> findAll();
+    void setSeatsAvailable(String theaterSelected, int seatsAvailable,int seatsNeeded);
+    int getTotalSeats(String theaterSelected);
+    int getSeatsAvailable(String theaterSelected, String date, String time);
+    void setSeatsAvailable(String theaterSelected, int availableSeats, int seatsNeeded, String selectedDate, String selectedTime);
 }

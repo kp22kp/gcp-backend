@@ -48,22 +48,62 @@ public class TheaterService implements ITheaterService {
         return (List<Theater>) theaterRepository.findAll();
     }
 
+
     @Override
-    public int getSeatsAvailable(String theaterSelected) {
+    public int getSeatsAvailable(String theaterSelected, String date, String time) {
         Theater theater = getTheaterName(theaterSelected);
-        if (theater != null) {
-            return theater.getSeatsAvailable();
-        }
-        return 0;
+        List<Integer> seatAvailableByShow = theater.getSeatAvailable();
+        int indexOfSeatsAvailable = getIndexOfSeatsAvailable(theaterSelected, date, time);
+        return seatAvailableByShow.get(indexOfSeatsAvailable);
     }
 
     @Override
-    public void setSeatsAvailable(String theaterSelected, int seatsAvailable) {
+    public void setSeatsAvailable(String theaterSelected, int availableSeats, int seatsNeeded, String selectedDate, String selectedTime) {
         Theater theater = getTheaterName(theaterSelected);
-        if (theater != null) {
-            theater.setSeatsAvailable(seatsAvailable);
+        List<Integer> seatAvailableByShow = theater.getSeatAvailable();
+        int indexOfSeatsAvailable = getIndexOfSeatsAvailable(theaterSelected, selectedDate, selectedTime);
+        if (indexOfSeatsAvailable != -1) {
+            seatAvailableByShow.set(indexOfSeatsAvailable, availableSeats - seatsNeeded);
+            theater.setSeatAvailable(seatAvailableByShow);
             theaterRepository.save(theater);
         }
+
+    }
+
+    @Override
+    public void setSeatsAvailable(String theaterSelected, int seatsAvailable,int seatsNeeded) {
+        Theater theater = getTheaterName(theaterSelected);
+        if (theater != null) {
+            theater.setSeatsAvailable(seatsAvailable - seatsNeeded);
+            theaterRepository.save(theater);
+        }
+    }
+
+    public int getIndexOfSeatsAvailable(String theaterSelected, String date, String time) {
+        Theater theater = getTheaterName(theaterSelected);
+        if (theater != null) {
+            List<String> dateOfShows = theater.getDateOfShows();
+            List<String> timing = theater.getTiming();
+            for (int i = 0; i < dateOfShows.size(); i++) {
+                if (dateOfShows.get(i).equals(date)) {
+                    for (int j = 0; j < timing.size(); j++) {
+                        if (timing.get(j).equals(time)) {
+                            return i * timing.size() + j;
+                        }
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public int getTotalSeats(String theaterSelected) {
+        Theater theater = getTheaterName(theaterSelected);
+        if (theater != null) {
+            return theater.getTotalSeats();
+        }
+        return 0;
     }
 
     public Theater getTheaterName(String theaterSelected) {
