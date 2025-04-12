@@ -15,7 +15,7 @@ public class MovieController {
     @Autowired
     private IMovieService movieService;
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
         Movie createdMovie = movieService.addMovie(movie);
         return ResponseEntity.ok(createdMovie);
@@ -27,13 +27,13 @@ public class MovieController {
         return ResponseEntity.ok(movie);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies = movieService.getAllMovies();
         return ResponseEntity.ok(movies);
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie) {
         Movie updatedMovie = movieService.updateMovie(movie);
         return ResponseEntity.ok(updatedMovie);

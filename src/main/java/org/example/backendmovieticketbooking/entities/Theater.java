@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +17,7 @@ public class Theater {
     private int theaterId;
     private String theaterName;
     private int totalSeats;
+    private int seatsAvailable;
 
     @ElementCollection
     private List<String> timing;
