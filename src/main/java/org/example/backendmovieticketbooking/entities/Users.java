@@ -18,6 +18,7 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     private String userName;
+    private String email;
     private String movieSelected;
     private String theaterSelected;
     private String selectedTime;

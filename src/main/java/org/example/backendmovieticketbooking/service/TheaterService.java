@@ -79,6 +79,47 @@ public class TheaterService implements ITheaterService {
         }
     }
 
+    @Override
+    public int getTotalSeats(String theaterSelected) {
+        Theater theater = getTheaterName(theaterSelected);
+        if (theater != null) {
+            return theater.getTotalSeats();
+        }
+        return 0;
+    }
+
+    public String seatAllocation(int numberOfTickets, int availableTickets, int seatsBooked) {
+        int seatNumber = seatsBooked+1;
+        if (numberOfTickets > availableTickets) {
+            return "Not enough tickets available";
+        }
+
+        StringBuilder seatAllocation = new StringBuilder();
+        int seatsPerRow = 10;
+
+        for (int i = 0; i < numberOfTickets; i++) {
+            int rowIndex = (seatNumber - 1) / seatsPerRow;
+            String row = generateRowName(rowIndex);
+            seatAllocation.append(row).append("-").append((seatNumber - 1) % seatsPerRow + 1).append(", ");
+            seatNumber++;
+        }
+
+        if (!seatAllocation.isEmpty()) {
+            seatAllocation.setLength(seatAllocation.length() - 2);
+        }
+
+        return seatAllocation.toString();
+    }
+
+    private String generateRowName(int index) {
+        StringBuilder rowName = new StringBuilder();
+        while (index >= 0) {
+            rowName.insert(0, (char) ('A' + index % 26));
+            index = index / 26 - 1;
+        }
+        return rowName.toString();
+    }
+
     public int getIndexOfSeatsAvailable(String theaterSelected, String date, String time) {
         Theater theater = getTheaterName(theaterSelected);
         if (theater != null) {
@@ -95,15 +136,6 @@ public class TheaterService implements ITheaterService {
             }
         }
         return -1;
-    }
-
-    @Override
-    public int getTotalSeats(String theaterSelected) {
-        Theater theater = getTheaterName(theaterSelected);
-        if (theater != null) {
-            return theater.getTotalSeats();
-        }
-        return 0;
     }
 
     public Theater getTheaterName(String theaterSelected) {
