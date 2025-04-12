@@ -13,7 +13,7 @@ public class TheaterController {
     @Autowired
     private ITheaterService theaterService;
 
-    @PostMapping("/add")
+    @PostMapping("")
     public Theater addTheater(@RequestBody Theater theater) {
         return theaterService.addTheater(theater);
     }

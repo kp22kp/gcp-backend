@@ -4,7 +4,6 @@ import org.example.backendmovieticketbooking.entities.Movie;
 import org.example.backendmovieticketbooking.entities.Theater;
 import org.example.backendmovieticketbooking.repository.IMovieRepository;
 import org.example.backendmovieticketbooking.repository.ITheaterRepository;
-import org.example.backendmovieticketbooking.service.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +20,6 @@ public class BackendMovieTicketBookingApplication implements CommandLineRunner {
 
 	@Autowired
 	ITheaterRepository theaterRepository;
-
 
 
 	public static void main(String[] args) {
@@ -43,9 +41,9 @@ public class BackendMovieTicketBookingApplication implements CommandLineRunner {
 		movieRepository.save(movie4);
 		movieRepository.save(movie5);
 
-		Theater theater1 = new Theater(1, "Grand Cinema", 200, 200, Arrays.asList("10:00 AM", "1:00 PM", "4:00 PM"), 1, Arrays.asList("2023-10-01", "2023-10-02", "2023-10-03"));
-		Theater theater2 = new Theater(2, "Elite Theater", 150, 150, Arrays.asList("11:00 AM", "2:00 PM", "5:00 PM"), 2, Arrays.asList("2023-10-04", "2023-10-05", "2023-10-06"));
-		Theater theater3 = new Theater(3, "Galaxy Multiplex", 300, 300, Arrays.asList("9:00 AM", "12:00 PM", "3:00 PM"), 3, Arrays.asList("2023-10-07", "2023-10-08", "2023-10-09"));
+		Theater theater1 = new Theater(1, "Grand Cinema", 200, Arrays.asList("10:00 AM", "1:00 PM", "4:00 PM"), 1, Arrays.asList("2023-10-01", "2023-10-02", "2023-10-03"));
+		Theater theater2 = new Theater(2, "Elite Theater", 150, Arrays.asList("11:00 AM", "2:00 PM", "5:00 PM"), 2, Arrays.asList("2023-10-04", "2023-10-05", "2023-10-06"));
+		Theater theater3 = new Theater(3, "Galaxy Multiplex", 300, Arrays.asList("9:00 AM", "12:00 PM", "3:00 PM"), 3, Arrays.asList("2023-10-07", "2023-10-08", "2023-10-09"));
 
 		theaterRepository.save(theater1);
 		theaterRepository.save(theater2);
