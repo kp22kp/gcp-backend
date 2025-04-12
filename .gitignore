@@ -37,4 +37,4 @@ out/
 .vscode/
 
 # Ignore application properties files
-application.properties
+src/main/resources/application.properties
