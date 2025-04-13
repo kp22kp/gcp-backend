@@ -10,8 +10,8 @@ import java.util.List;
 public class TheaterService implements ITheaterService {
     @Autowired
     private ITheaterRepository theaterRepository;
-    @Autowired
-    private ITheaterService theaterService;
+//    @Autowired
+//    private ITheaterService theaterService;
 
     @Override
     public Theater addTheater(Theater theater) {
