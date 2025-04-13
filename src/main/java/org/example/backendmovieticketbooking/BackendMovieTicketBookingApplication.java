@@ -4,12 +4,10 @@ import org.example.backendmovieticketbooking.entities.Movie;
 import org.example.backendmovieticketbooking.entities.Theater;
 import org.example.backendmovieticketbooking.repository.IMovieRepository;
 import org.example.backendmovieticketbooking.repository.ITheaterRepository;
-import org.example.backendmovieticketbooking.service.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import java.util.Arrays;
 
 

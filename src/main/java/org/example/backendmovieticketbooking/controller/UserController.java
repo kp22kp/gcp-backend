@@ -1,6 +1,5 @@
 package org.example.backendmovieticketbooking.controller;
 
-
 import jakarta.mail.MessagingException;
 import org.example.backendmovieticketbooking.entities.Users;
 import org.example.backendmovieticketbooking.service.EmailService;
@@ -38,8 +37,6 @@ public class UserController {
         if (seatsNeeded > 10) {
             throw new RuntimeException("Can only book 10 seats at a time");
         }
-
-        theaterService.setSeatsAvailable(user.getTheaterSelected(),availableSeats, seatsNeeded);
         theaterService.setSeatsAvailable(user.getTheaterSelected(),availableSeats, seatsNeeded, user.getSelectedDate(), user.getSelectedTime());
         String seats = theaterService.seatAllocation(seatsNeeded, availableSeats, seatsBooked);
         user.setSeatsAllocated(seats);

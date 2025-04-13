@@ -6,7 +6,6 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +22,6 @@ public class Theater {
     @ElementCollection
     private List<Integer> seatAvailable;
 
-    private int seatsAvailable;
-
     @ElementCollection
     private List<String> timing;
 
@@ -37,7 +34,6 @@ public class Theater {
         this.theaterId = theaterId;
         this.theaterName = theaterName;
         this.totalSeats = totalSeats;
-        this.seatsAvailable = totalSeats;
         this.timing = timing;
         this.dateOfShows = dateOfShows;
         this.runningMovieId = runningMovieId;

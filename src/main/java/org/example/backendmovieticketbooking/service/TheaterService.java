@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+
 @Service
 public class TheaterService implements ITheaterService {
     @Autowired
     private ITheaterRepository theaterRepository;
-//    @Autowired
-//    private ITheaterService theaterService;
 
     @Override
     public Theater addTheater(Theater theater) {
@@ -65,16 +64,6 @@ public class TheaterService implements ITheaterService {
         if (indexOfSeatsAvailable != -1) {
             seatAvailableByShow.set(indexOfSeatsAvailable, availableSeats - seatsNeeded);
             theater.setSeatAvailable(seatAvailableByShow);
-            theaterRepository.save(theater);
-        }
-
-    }
-
-    @Override
-    public void setSeatsAvailable(String theaterSelected, int seatsAvailable,int seatsNeeded) {
-        Theater theater = getTheaterName(theaterSelected);
-        if (theater != null) {
-            theater.setSeatsAvailable(seatsAvailable - seatsNeeded);
             theaterRepository.save(theater);
         }
     }
