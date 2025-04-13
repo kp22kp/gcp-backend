@@ -19,4 +19,5 @@ public class Movie {
     private int yearOfRelease;
     private String genre;
     private String language;
+    private String imageUrl;
 }
