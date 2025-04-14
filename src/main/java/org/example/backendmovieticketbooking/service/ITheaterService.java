@@ -8,7 +8,7 @@ public interface ITheaterService {
     Theater addTheater(Theater theater);
     Theater updateTheater(Theater theater);
     Boolean deleteTheater(int theaterId);
-    Theater getTheater(int theaterId);
+    List<Theater> getTheater(int movieId);
     List<Theater> findAll();
     int getTotalSeats(String theaterSelected);
     int getSeatsAvailable(String theaterSelected, String date, String time);

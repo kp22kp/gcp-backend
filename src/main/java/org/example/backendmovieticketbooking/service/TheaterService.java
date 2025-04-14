@@ -34,11 +34,8 @@ public class TheaterService implements ITheaterService {
     }
 
     @Override
-    public Theater getTheater(int theaterId) {
-        if(theaterRepository.existsById(theaterId)) {
-            return theaterRepository.findById(theaterId).get();
-        }
-        return null;
+    public List<Theater> getTheater(int movieId) {
+        return theaterRepository.getTheaterByRunningMovieId(movieId);
     }
 
     @Override
@@ -113,12 +110,12 @@ public class TheaterService implements ITheaterService {
         Theater theater = getTheaterName(theaterSelected);
         if (theater != null) {
             List<String> dateOfShows = theater.getDateOfShows();
-            List<String> timing = theater.getTiming();
+            List<String> showTiming = theater.getShowTiming();
             for (int i = 0; i < dateOfShows.size(); i++) {
                 if (dateOfShows.get(i).equals(date)) {
-                    for (int j = 0; j < timing.size(); j++) {
-                        if (timing.get(j).equals(time)) {
-                            return i * timing.size() + j;
+                    for (int j = 0; j < showTiming.size(); j++) {
+                        if (showTiming.get(j).equals(time)) {
+                            return i * showTiming.size() + j;
                         }
                     }
                 }

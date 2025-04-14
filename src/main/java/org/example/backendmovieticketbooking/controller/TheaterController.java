@@ -30,9 +30,9 @@ public class TheaterController {
         return "Theater not found";
     }
 
-    @GetMapping("/{theaterId}")
-    public Theater getTheater(@PathVariable int theaterId) {
-        return theaterService.getTheater(theaterId);
+    @GetMapping("/{movieId}")
+    public List<Theater> getTheater(@PathVariable int movieId) {
+        return theaterService.getTheater(movieId);
     }
 
     @GetMapping("")

@@ -6,6 +6,7 @@ import org.example.backendmovieticketbooking.service.EmailService;
 import org.example.backendmovieticketbooking.service.TheaterService;
 import org.example.backendmovieticketbooking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,18 @@ public class UserController {
 
     @Autowired
     private EmailService emailService;
+
+    @GetMapping("/getAvailableSeats")
+    public ResponseEntity<Integer> getAvailableSeats(@RequestParam(required = false) String theaterName,
+                                                     @RequestParam(required = false) String date,
+                                                     @RequestParam(required = false) String timing) {
+        System.out.println("getAvailableSeats called");
+        System.out.println("Theater ID: " + theaterName);
+        System.out.println("Date: " + date);
+        System.out.println("Timing: " + timing);
+        int availableSeats = theaterService.getSeatsAvailable(theaterName, date, timing);
+        return ResponseEntity.ok(availableSeats);
+    }
 
     @PostMapping("")
     public Users addUser(@RequestBody Users user) throws MessagingException { // Use @RequestBody to map JSON to User
