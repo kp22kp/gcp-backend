@@ -1,7 +1,6 @@
 package org.example.backendmovieticketbooking.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +12,21 @@ import lombok.NoArgsConstructor;
 
 public class Movie {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private int yearOfRelease;
     private String genre;
     private String language;
     private String imageUrl;
+    @Version
+    private Integer version;
+
+    public Movie(String name, int yearOfRelease, String genre, String language, String imageUrl) {
+        this.name = name;
+        this.yearOfRelease = yearOfRelease;
+        this.genre = genre;
+        this.language = language;
+        this.imageUrl = imageUrl;
+    }
 }
