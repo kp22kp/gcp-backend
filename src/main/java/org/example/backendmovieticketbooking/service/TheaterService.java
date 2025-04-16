@@ -4,6 +4,8 @@ import org.example.backendmovieticketbooking.entities.Theater;
 import org.example.backendmovieticketbooking.repository.ITheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,14 +16,21 @@ public class TheaterService implements ITheaterService {
 
     @Override
     public Theater addTheater(Theater theater) {
+        theater = initializeSeatsGrid(theater);
         theaterRepository.save(theater);
         return theater;
     }
 
     @Override
     public Theater updateTheater(Theater theater) {
+        theater = initializeSeatsGrid(theater);
         theaterRepository.save(theater);
         return theater;
+    }
+
+    @Override
+    public Theater getTheaterById(int theaterId) {
+        return theaterRepository.findById(theaterId).orElseThrow(() -> new RuntimeException("Theater not found with id: " + theaterId));
     }
 
     @Override
@@ -132,5 +141,19 @@ public class TheaterService implements ITheaterService {
             }
         }
         return null;
+    }
+
+    public Theater initializeSeatsGrid(Theater theater) {
+        if (theater.getSeatAvailable() == null) {
+            theater.setSeatAvailable(new ArrayList<>()); // Initialize the list
+        } else {
+            theater.getSeatAvailable().clear(); // Clear the list to avoid duplication
+        }
+        for (int i = 0; i < theater.getDateOfShows().size(); i++) {
+            for (int j = 0; j < theater.getShowTiming().size(); j++) {
+                theater.getSeatAvailable().add(theater.getTotalSeats()); // Initialize with total seats
+            }
+        }
+        return theater;
     }
 }

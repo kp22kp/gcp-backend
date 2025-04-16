@@ -1,8 +1,6 @@
 package org.example.backendmovieticketbooking.entities;
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +13,7 @@ import java.util.List;
 @Entity
 public class Theater {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int theaterId;
     private String theaterName;
     private int totalSeats;
@@ -30,10 +29,14 @@ public class Theater {
     @ElementCollection
     private List<String> dateOfShows;
 
+    @Column(length = 1000)
     private String theaterUrl;
 
-    public Theater(int theaterId, String theaterName, int totalSeats, List<String> timing, int runningMovieId, List<String> dateOfShows, String theaterUrl) {
-        this.theaterId = theaterId;
+//    public Theater() {
+//        initializeSeatsGrid();
+//    }
+
+    public Theater(String theaterName, int totalSeats, List<String> timing, int runningMovieId, List<String> dateOfShows, String theaterUrl) {
         this.theaterName = theaterName;
         this.totalSeats = totalSeats;
         this.showTiming = timing;
@@ -41,11 +44,14 @@ public class Theater {
         this.runningMovieId = runningMovieId;
         this.theaterUrl = theaterUrl;
         initializeSeatsGrid();
+        System.out.println("addUser called");
     }
 
     public void initializeSeatsGrid() {
         if (seatAvailable == null) {
             seatAvailable = new ArrayList<>(); // Initialize the list
+        } else {
+            seatAvailable.clear(); // Clear the list to avoid duplication
         }
         for (int i = 0; i < dateOfShows.size(); i++) {
             for (int j = 0; j < showTiming.size(); j++) {

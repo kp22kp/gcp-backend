@@ -51,10 +51,10 @@ public class BackendMovieTicketBookingApplication implements CommandLineRunner {
 		movieRepository.save(movie11);
 		movieRepository.save(movie12);
 
-		Theater theater1 = new Theater(1, "Grand Cinema", 200, Arrays.asList("10:00 AM", "1:00 PM", "4:00 PM"), 1, Arrays.asList("2023-10-01", "2023-10-02", "2023-10-03"),"https://th.bing.com/th/id/OIP.4EXPLgZqFe8PFaWhMNFYkgHaJg?w=220&h=283&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2");
-		Theater theater2 = new Theater(2, "Elite Theater", 150, Arrays.asList("11:00 AM", "2:00 PM", "5:00 PM"), 2, Arrays.asList("2023-10-04", "2023-10-05", "2023-10-06"), "https://th.bing.com/th/id/OIP.aU_VnMXhUVC8cwzsiY4LbgHaFZ?w=292&h=213&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2");
-		Theater theater3 = new Theater(3, "Galaxy Multiplex", 300, Arrays.asList("9:00 AM", "12:00 PM", "3:00 PM"), 3, Arrays.asList("2023-10-07", "2023-10-08", "2023-10-09"),"https://th.bing.com/th/id/OIP.b8WvZgdajytlosm15GrNyAHaFj?w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2");
-		Theater theater4 = new Theater(4, "Cine World", 250, Arrays.asList("10:30 AM", "1:30 PM", "4:30 PM"), 3, Arrays.asList("2023-10-10", "2023-10-11", "2023-10-12"), "https://th.bing.com/th/id/OIP.yvn6mxHjKkSohMYnPCkPPAHaE4?w=128&h=104&c=7&bgcl=b61f8b&r=0&o=6&dpr=2&pid=13.1");
+		Theater theater1 = new Theater("Grand Cinema", 200, Arrays.asList("10:00 AM", "1:00 PM", "4:00 PM"), 1, Arrays.asList("17-04-2025", "18-04-2025", "19-04-2025"), "https://th.bing.com/th/id/OIP.4EXPLgZqFe8PFaWhMNFYkgHaJg?w=220&h=283&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2");
+		Theater theater2 = new Theater("Elite Theater", 150, Arrays.asList("11:00 AM", "2:00 PM", "5:00 PM"), 2, Arrays.asList("20-04-2025", "21-04-2025", "22-04-2025"), "https://th.bing.com/th/id/OIP.aU_VnMXhUVC8cwzsiY4LbgHaFZ?w=292&h=213&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2");
+		Theater theater3 = new Theater("Galaxy Multiplex", 300, Arrays.asList("9:00 AM", "12:00 PM", "3:00 PM"), 3, Arrays.asList("23-04-2025", "24-04-2025", "25-04-2025"), "https://th.bing.com/th/id/OIP.b8WvZgdajytlosm15GrNyAHaFj?w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2");
+		Theater theater4 = new Theater("Cine World", 250, Arrays.asList("10:30 AM", "1:30 PM", "4:30 PM"), 3, Arrays.asList("26-04-2025", "27-04-2025", "28-04-2025"), "https://th.bing.com/th/id/OIP.yvn6mxHjKkSohMYnPCkPPAHaE4?w=128&h=104&c=7&bgcl=b61f8b&r=0&o=6&dpr=2&pid=13.1");
 		theaterRepository.save(theater1);
 		theaterRepository.save(theater2);
 		theaterRepository.save(theater3);

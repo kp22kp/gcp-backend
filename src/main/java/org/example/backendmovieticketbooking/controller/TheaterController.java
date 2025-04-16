@@ -36,6 +36,11 @@ public class TheaterController {
         return theaterService.getTheater(movieId);
     }
 
+    @GetMapping("/theaterId/{theaterId}")
+    public Theater getTheaterById(@PathVariable int theaterId) {
+        return theaterService.getTheaterById(theaterId);
+    }
+
     @GetMapping("")
     public List<Theater> getAllTheater() {
         return theaterService.findAll();
