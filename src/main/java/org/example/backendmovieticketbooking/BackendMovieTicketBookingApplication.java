@@ -24,6 +24,8 @@ public class BackendMovieTicketBookingApplication implements CommandLineRunner {
 		SpringApplication.run(BackendMovieTicketBookingApplication.class, args);
 	}
 
+
+//	Add Initial Movie And Theater Data
 	@Override
 	public void run(String... args) throws Exception {
 		Movie movie1 = new Movie("Inception", 2010, "Sci-Fi", "English","https://m.media-amazon.com/images/M/MV5BMjExMjkwNTQ0Nl5BMl5BanBnXkFtZTcwNTY0OTk1Mw@@._V1_.jpg");
@@ -38,6 +40,7 @@ public class BackendMovieTicketBookingApplication implements CommandLineRunner {
 		Movie movie10 = new Movie( "RRR", 2022, "Action-Drama", "Telugu", "https://th.bing.com/th/id/OIP.04gVePrs6zsGVNt6S_Za9QHaKf?rs=1&pid=ImgDetMain");
 		Movie movie11 = new Movie( "Brahmastra Part One: Shiva", 2022, "Action-Drama", "Hindi", "https://www.themoviedb.org/t/p/original/4kZW6qBBf8djV7Gbe2vpJVUbNR8.jpg");
 		Movie movie12 = new Movie( "Avengers: Endgame", 2019, "Action - Sci-fi", "English", "https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/91/Endgame_Poster_2.jpg/revision/latest?cb=20190314215527");
+
 		movieRepository.save(movie1);
 		movieRepository.save(movie2);
 		movieRepository.save(movie3);
@@ -55,6 +58,7 @@ public class BackendMovieTicketBookingApplication implements CommandLineRunner {
 		Theater theater2 = new Theater("Elite Theater", 150, Arrays.asList("11:00 AM", "2:00 PM", "5:00 PM"), 2, Arrays.asList("20-04-2025", "21-04-2025", "22-04-2025"), "https://th.bing.com/th/id/OIP.aU_VnMXhUVC8cwzsiY4LbgHaFZ?w=292&h=213&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2");
 		Theater theater3 = new Theater("Galaxy Multiplex", 300, Arrays.asList("9:00 AM", "12:00 PM", "3:00 PM"), 3, Arrays.asList("23-04-2025", "24-04-2025", "25-04-2025"), "https://th.bing.com/th/id/OIP.b8WvZgdajytlosm15GrNyAHaFj?w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2");
 		Theater theater4 = new Theater("Cine World", 250, Arrays.asList("10:30 AM", "1:30 PM", "4:30 PM"), 3, Arrays.asList("26-04-2025", "27-04-2025", "28-04-2025"), "https://th.bing.com/th/id/OIP.yvn6mxHjKkSohMYnPCkPPAHaE4?w=128&h=104&c=7&bgcl=b61f8b&r=0&o=6&dpr=2&pid=13.1");
+
 		theaterRepository.save(theater1);
 		theaterRepository.save(theater2);
 		theaterRepository.save(theater3);

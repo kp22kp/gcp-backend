@@ -24,6 +24,7 @@ public class UserController {
     @Autowired
     private EmailService emailService;
 
+//    Get Available Seats
     @GetMapping("/getAvailableSeats")
     public ResponseEntity<Integer> getAvailableSeats(@RequestParam(required = false) String theaterName,
                                                      @RequestParam(required = false) String date,
@@ -36,6 +37,7 @@ public class UserController {
         return ResponseEntity.ok(availableSeats);
     }
 
+//    Add User
     @PostMapping("")
     public Users addUser(@RequestBody Users user) throws MessagingException { // Use @RequestBody to map JSON to User
         System.out.println("addUser called");
@@ -58,12 +60,14 @@ public class UserController {
         return user;
     }
 
+//    Get All Users
     @GetMapping("")
     public List<Users> getAllUsers() {
         return userService.getAllUsers();
     }
 
 
+//    Send Mail Confirmation
     public String sendConfirmation(String email, Users user) throws MessagingException {
         String subject = "Confirmation Email";
         String htmlContent = "<html>"
