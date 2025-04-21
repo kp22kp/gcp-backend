@@ -1,6 +1,6 @@
 package org.example.backendmovieticketbooking.controller;
 
-import org.example.backendmovieticketbooking.entities.Theater;
+import org.example.backendmovieticketbooking.entitie.Theater;
 import org.example.backendmovieticketbooking.service.ITheaterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

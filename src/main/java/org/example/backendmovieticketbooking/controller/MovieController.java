@@ -1,6 +1,6 @@
 package org.example.backendmovieticketbooking.controller;
 
-import org.example.backendmovieticketbooking.entities.Movie;
+import org.example.backendmovieticketbooking.entitie.Movie;
 import org.example.backendmovieticketbooking.service.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

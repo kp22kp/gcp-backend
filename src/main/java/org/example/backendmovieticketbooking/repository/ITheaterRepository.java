@@ -1,6 +1,6 @@
 package org.example.backendmovieticketbooking.repository;
 
-import org.example.backendmovieticketbooking.entities.Theater;
+import org.example.backendmovieticketbooking.entitie.Theater;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

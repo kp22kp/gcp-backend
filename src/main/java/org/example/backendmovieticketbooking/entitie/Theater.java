@@ -1,4 +1,4 @@
-package org.example.backendmovieticketbooking.entities;
+package org.example.backendmovieticketbooking.entitie;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

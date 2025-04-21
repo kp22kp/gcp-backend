@@ -1,6 +1,6 @@
 package org.example.backendmovieticketbooking.service;
 
-import org.example.backendmovieticketbooking.entities.Users;
+import org.example.backendmovieticketbooking.entitie.Users;
 import org.example.backendmovieticketbooking.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

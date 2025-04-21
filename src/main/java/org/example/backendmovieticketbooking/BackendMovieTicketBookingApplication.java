@@ -1,7 +1,7 @@
 package org.example.backendmovieticketbooking;
 
-import org.example.backendmovieticketbooking.entities.Movie;
-import org.example.backendmovieticketbooking.entities.Theater;
+import org.example.backendmovieticketbooking.entitie.Movie;
+import org.example.backendmovieticketbooking.entitie.Theater;
 import org.example.backendmovieticketbooking.repository.IMovieRepository;
 import org.example.backendmovieticketbooking.repository.ITheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class BackendMovieTicketBookingApplication implements CommandLineRunner {
 	}
 
 
-//	Add Initial Movie And Theater Data
+//	Add Initial Movie And Theater Data 
 	@Override
 	public void run(String... args) throws Exception {
 		Movie movie1 = new Movie("Inception", 2010, "Sci-Fi", "English","https://m.media-amazon.com/images/M/MV5BMjExMjkwNTQ0Nl5BMl5BanBnXkFtZTcwNTY0OTk1Mw@@._V1_.jpg");

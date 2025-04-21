@@ -1,7 +1,7 @@
 package org.example.backendmovieticketbooking.controller;
 
 import jakarta.mail.MessagingException;
-import org.example.backendmovieticketbooking.entities.Users;
+import org.example.backendmovieticketbooking.entitie.Users;
 import org.example.backendmovieticketbooking.service.EmailService;
 import org.example.backendmovieticketbooking.service.TheaterService;
 import org.example.backendmovieticketbooking.service.UserService;

@@ -1,6 +1,6 @@
 package org.example.backendmovieticketbooking.service;
 
-import org.example.backendmovieticketbooking.entities.Theater;
+import org.example.backendmovieticketbooking.entitie.Theater;
 import java.util.List;
 
 
