@@ -8,7 +8,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/theater")
+@RequestMapping("/api/v1/theaters")
 public class TheaterController {
     @Autowired
     private ITheaterService theaterService;

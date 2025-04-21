@@ -9,7 +9,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/movie")
+@RequestMapping("/api/v1/movies")
 public class MovieController {
 
     @Autowired
