@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/user") // Correctly define the base path
+@RequestMapping("/api/v1/users") // Correctly define the base path
 public class UserController {
 
     @Autowired
