@@ -1,25 +1,51 @@
-# Stage 1: Build the application - multi stage docker for lean build
- 
-# Using Gradle 8.4 with JDK 21 for the builder stage
-FROM gradle:8.4-jdk21 AS builder
- 
-# Copy project files to container
-COPY . /app
- 
-# Run Gradle build - no test done to minimise build time
-# Ensure toolchain is configured if necessary, but Gradle 8.x handles this well usually
-RUN cd /app && gradle clean build -x test
- 
-# Stage 2: Run the application - trusted eclipse temurin image for slimmer faster and secure image
- 
-# Already using Eclipse Temurin 21, which is perfect for running on Java 21
-FROM eclipse-temurin:21-jdk-jammy
- 
-# Copy the JAR from the builder stage
-COPY --from=builder /app/build/libs/*.jar /app/app.jar
- 
-# Expose application port (optional, e.g., 8080)
+# Stage 1: Build the application
+FROM gradle:8.4-jdk21-alpine AS builder
+
+WORKDIR /app
+
+# Copy Gradle wrapper and build files first for better caching
+COPY gradle/ gradle/
+COPY gradlew .
+COPY gradle.properties .
+COPY settings.gradle .
+COPY build.gradle .
+
+# Make gradlew executable (in case of permission issues)
+RUN chmod +x gradlew
+
+# Download dependencies (this layer will be cached if build files don't change)
+RUN ./gradlew dependencies --no-daemon
+
+# Copy source code
+COPY src/ src/
+
+# Build the application
+RUN ./gradlew clean build -x test --no-daemon
+
+# Stage 2: Runtime
+FROM eclipse-temurin:21-jre-alpine
+
+# Create non-root user for security
+RUN addgroup -g 1001 -S spring && \
+    adduser -u 1001 -S spring -G spring
+
+WORKDIR /app
+
+# Copy the JAR from builder stage
+COPY --from=builder /app/build/libs/*.jar app.jar
+
+# Change ownership to spring user
+RUN chown spring:spring app.jar
+
+# Switch to non-root user
+USER spring
+
+# Expose port
 EXPOSE 8080
- 
-# Run the JAR
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:8080/actuator/health || exit 1
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
