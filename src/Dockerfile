@@ -1,6 +1,6 @@
 
 # Stage 1: Build the application -  multi stage docker for lean build 
-FROM gradle:8.4-jdk17 AS builder
+FROM gradle:8.4-jdk21 AS builder
 
 # Copy project files to container
 COPY . /app
