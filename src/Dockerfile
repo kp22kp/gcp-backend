@@ -10,17 +10,17 @@ COPY gradle.properties .
 COPY settings.gradle .
 COPY build.gradle .
 
-# Make gradlew executable (in case of permission issues)
+# Make gradlew executable (fix permission issues)
 RUN chmod +x gradlew
 
-# Download dependencies (this layer will be cached if build files don't change)
+# Download dependencies (this layer will be cached)
 RUN ./gradlew dependencies --no-daemon
 
 # Copy source code
 COPY src/ src/
 
 # Build the application
-RUN ./gradlew clean build -x test --no-daemon
+RUN ./gradlew clean bootJar -x test --no-daemon
 
 # Stage 2: Runtime
 FROM eclipse-temurin:21-jre-alpine
@@ -40,12 +40,10 @@ RUN chown spring:spring app.jar
 # Switch to non-root user
 USER spring
 
-# Expose port
 EXPOSE 8080
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:8080/actuator/health || exit 1
 
-# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
